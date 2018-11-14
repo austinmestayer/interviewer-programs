@@ -1,0 +1,106 @@
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Prog07_AnalyzeGrades {
+
+//Main Method__________________________________________________________________________________________________________________	
+public static void main (String[] args){
+	Scanner sc = new Scanner (System.in);
+	String enter;
+	enter = sc.nextLine();
+	if (enter.equalsIgnoreCase("A")){StringPalindrome();}
+	if (enter.equalsIgnoreCase("B")){IntPalindrome();}
+	if (enter.equalsIgnoreCase("C")){ArmstrongChecker();}
+}
+public static void StringPalindrome () {
+	Scanner sc = new Scanner (System.in);
+	String word;
+	String bigString = "";
+	
+	System.out.println("Enter a word:");
+	word = sc.nextLine();
+
+	int x = word.length();
+	
+	String[] array = new String [x];
+
+	for (int y = 0; y < x; y++){		
+		array[y] = word.substring(y, y + 1);
+	}
+
+	for (int z = x - 1; z > -1; z--) {
+		bigString += array[z];
+	}
+
+if (word.equalsIgnoreCase(bigString)) {
+	System.out.println("Is a palindrome.");
+}
+else {
+	System.out.println("Isn't a palindrome.");
+}
+	
+}
+public static void IntPalindrome () {
+
+	Scanner sc = new Scanner (System.in);
+	System.out.println("Enter an integer:");
+	String bigInt = "";
+	int num = sc.nextInt();
+	String numValue = String.valueOf(num);
+	int x = numValue.length();
+	
+	String[] array = new String [x];
+	
+	for (int y = 0; y < x; y++){		
+		array[y] = numValue.substring(y, y + 1);
+	}
+	for (int z = x - 1; z > -1; z--) {
+		bigInt += array[z];
+	}
+	if (numValue.equals(bigInt)) {
+		System.out.println("Is a palindrome.");
+	}
+	else {
+		System.out.println("Isn't a palindrome.");
+	}
+}
+public static void ArmstrongChecker () {
+Scanner sc = new Scanner(System.in);
+
+System.out.println("Please enter an integer:");
+int num = sc.nextInt();
+String number;
+number = String.valueOf(num);
+int x = number.length();
+String[] array = new String [x];
+int[] arraycopy = new int [x];
+int[] array2 = new int [x];
+int[] arraysquared = new int [x];
+int arraysquaredtotal = 0;
+
+for (int y = 0; y < x; y++){		
+	array[y] = number.substring(y, y + 1);
+	arraycopy[y] = Integer.parseInt(array[y]);
+}
+for (int y = 0; y < x; y++) {
+	array2[y] = arraycopy[y];
+}
+for (int y = 0; y < x; y++) {
+	arraysquared[y] = array2[y] * array2[y] * array2[y];
+}
+for (int y = 0; y < x; y++) {
+	arraysquaredtotal = arraysquaredtotal + arraysquared[y];
+}
+
+String armstrongChecker;
+
+armstrongChecker = String.valueOf(arraysquaredtotal);
+if (armstrongChecker.equals(number)) {
+	System.out.println("This number is an Armstrong number.");
+}
+else {
+	System.out.println("This is not an Armstrong number.");
+}
+}
+
+}
