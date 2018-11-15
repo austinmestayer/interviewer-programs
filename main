@@ -1,106 +1,156 @@
 import java.util.Scanner;
-import java.lang.Math;
+import javax.swing.Timer;
+		public class Prog07_AnalyzeGrades {
 
-public class Prog07_AnalyzeGrades {
+		//Main Method__________________________________________________________________________________________________________________	
+		public static void main (String[] args) throws InterruptedException{
+			String progChoice = null; //Table Operator
+			boolean programEnd = false;
+	do {	
 
-//Main Method__________________________________________________________________________________________________________________	
-public static void main (String[] args){
-	Scanner sc = new Scanner (System.in);
-	String enter;
-	enter = sc.nextLine();
-	if (enter.equalsIgnoreCase("A")){StringPalindrome();}
-	if (enter.equalsIgnoreCase("B")){IntPalindrome();}
-	if (enter.equalsIgnoreCase("C")){ArmstrongChecker();}
-}
-public static void StringPalindrome () {
-	Scanner sc = new Scanner (System.in);
-	String word;
-	String bigString = "";
-	
-	System.out.println("Enter a word:");
-	word = sc.nextLine();
+				
+			System.out.println("INTERESTING PROGRAMS MENU");
+			System.out.println("===========================================");
+			System.out.println("[A] CHECK IF STRING IS A PALINDROME");
+			System.out.println("[B] CHECK IF INTEGER IS A PALINDROME");
+			System.out.println("[C] CHECK IF NUMBER IS ARMSTRONG NUMBER");
+			System.out.println("[X] QUIT");
+			System.out.println("===========================================");
+			System.out.println("ENTER MENU OPTION:");
+			
+			progChoice = validProgOp();
+			
+			if (progChoice.equalsIgnoreCase("A")) {
+				StringPalindrome();
+			}
+			if (progChoice.equalsIgnoreCase("B")) {
+				IntPalindrome();
+			}
+			if (progChoice.equalsIgnoreCase("C")) {
+				ArmstrongChecker();
+			}
+			if (progChoice.equalsIgnoreCase("X")) {
+				System.exit(0);
+			}
+	}	
+	while (programEnd == false);		
+		}	
+		
+		public static String validProgOp () {
+						Scanner progOp = new Scanner (System.in);
+						boolean isValid = false; //Loop Breaker
+						String progChoice = null; //Operator Output
+						 do {
+							 	progChoice = progOp.nextLine();
+								if (progChoice.equalsIgnoreCase("A")) { isValid = true;
+								}
+								else if (progChoice.equalsIgnoreCase("B")) { isValid = true;
+								}
+								else if (progChoice.equalsIgnoreCase("C")) { isValid = true;
+								}
+								else if (progChoice.equalsIgnoreCase("X")) { isValid = true;
+								}
+								else {System.out.println("Please enter a valid choice:"); isValid = false;
+								}
+						 }
+						  while (isValid == false); 
+						 
+						  return progChoice;
+						}
+		public static void StringPalindrome () throws InterruptedException {
+			Scanner sc = new Scanner (System.in);
+			String word;
+			String bigString = "";
+			
+			System.out.println("Enter a word:");
+			word = sc.nextLine();
 
-	int x = word.length();
-	
-	String[] array = new String [x];
+			int x = word.length();
+			
+			String[] array = new String [x];
 
-	for (int y = 0; y < x; y++){		
-		array[y] = word.substring(y, y + 1);
+			for (int y = 0; y < x; y++){		
+				array[y] = word.substring(y, y + 1);
+			}
+
+			for (int z = x - 1; z > -1; z--) {
+				bigString += array[z];
+			}
+
+		if (word.equalsIgnoreCase(bigString)) {
+			System.out.println("Is a palindrome.");
+		}
+		else if (word.equalsIgnoreCase("Palindrome")) {
+			System.out.println("No. Ironic, isn't it?");
+		}
+		else {
+			System.out.println("Isn't a palindrome.");
+		}
+			Thread.sleep(3000);
+		}
+		public static void IntPalindrome () throws InterruptedException {
+
+			Scanner sc = new Scanner (System.in);
+			System.out.println("Enter an integer:");
+			String bigInt = "";
+			long num = sc.nextLong();
+			String numValue = String.valueOf(num);
+			int x = numValue.length();
+			
+			String[] array = new String [x];
+			
+			for (int y = 0; y < x; y++){		
+				array[y] = numValue.substring(y, y + 1);
+			}
+			for (int z = x - 1; z > -1; z--) {
+				bigInt += array[z];
+			}
+			if (numValue.equals(bigInt)) {
+				System.out.println("Is a palindrome.");
+			}
+			else {
+				System.out.println("Isn't a palindrome.");
+			}
+			Thread.sleep(3000);
+		}
+		public static void ArmstrongChecker () throws InterruptedException {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Please enter an integer:");
+		int num = sc.nextInt();
+		String number;
+		number = String.valueOf(num);
+		int x = number.length();
+		String[] array = new String [x];
+		int[] arraycopy = new int [x];
+		int[] array2 = new int [x];
+		int[] arraysquared = new int [x];
+		int arraysquaredtotal = 0;
+
+		for (int y = 0; y < x; y++){		
+			array[y] = number.substring(y, y + 1);
+			arraycopy[y] = Integer.parseInt(array[y]);
+		}
+		for (int y = 0; y < x; y++) {
+			array2[y] = arraycopy[y];
+		}
+		for (int y = 0; y < x; y++) {
+			arraysquared[y] = array2[y] * array2[y] * array2[y];
+		}
+		for (int y = 0; y < x; y++) {
+			arraysquaredtotal = arraysquaredtotal + arraysquared[y];
+		}
+
+		String armstrongChecker;
+
+		armstrongChecker = String.valueOf(arraysquaredtotal);
+		if (armstrongChecker.equals(number)) {
+			System.out.println("This number is an Armstrong number.");
+		}
+		else {
+			System.out.println("This is not an Armstrong number.");
+		}
+		Thread.sleep(3000);
 	}
-
-	for (int z = x - 1; z > -1; z--) {
-		bigString += array[z];
-	}
-
-if (word.equalsIgnoreCase(bigString)) {
-	System.out.println("Is a palindrome.");
-}
-else {
-	System.out.println("Isn't a palindrome.");
-}
-	
-}
-public static void IntPalindrome () {
-
-	Scanner sc = new Scanner (System.in);
-	System.out.println("Enter an integer:");
-	String bigInt = "";
-	int num = sc.nextInt();
-	String numValue = String.valueOf(num);
-	int x = numValue.length();
-	
-	String[] array = new String [x];
-	
-	for (int y = 0; y < x; y++){		
-		array[y] = numValue.substring(y, y + 1);
-	}
-	for (int z = x - 1; z > -1; z--) {
-		bigInt += array[z];
-	}
-	if (numValue.equals(bigInt)) {
-		System.out.println("Is a palindrome.");
-	}
-	else {
-		System.out.println("Isn't a palindrome.");
-	}
-}
-public static void ArmstrongChecker () {
-Scanner sc = new Scanner(System.in);
-
-System.out.println("Please enter an integer:");
-int num = sc.nextInt();
-String number;
-number = String.valueOf(num);
-int x = number.length();
-String[] array = new String [x];
-int[] arraycopy = new int [x];
-int[] array2 = new int [x];
-int[] arraysquared = new int [x];
-int arraysquaredtotal = 0;
-
-for (int y = 0; y < x; y++){		
-	array[y] = number.substring(y, y + 1);
-	arraycopy[y] = Integer.parseInt(array[y]);
-}
-for (int y = 0; y < x; y++) {
-	array2[y] = arraycopy[y];
-}
-for (int y = 0; y < x; y++) {
-	arraysquared[y] = array2[y] * array2[y] * array2[y];
-}
-for (int y = 0; y < x; y++) {
-	arraysquaredtotal = arraysquaredtotal + arraysquared[y];
-}
-
-String armstrongChecker;
-
-armstrongChecker = String.valueOf(arraysquaredtotal);
-if (armstrongChecker.equals(number)) {
-	System.out.println("This number is an Armstrong number.");
-}
-else {
-	System.out.println("This is not an Armstrong number.");
-}
-}
 
 }
